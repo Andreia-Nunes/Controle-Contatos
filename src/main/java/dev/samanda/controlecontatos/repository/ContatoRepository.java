@@ -1,2 +1,9 @@
-package dev.samanda.controlecontatos.repository;public interface ContatoRepository {
+package dev.samanda.controlecontatos.repository;
+
+import dev.samanda.controlecontatos.model.Contato;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
+
+@Repository
+public interface ContatoRepository extends JpaRepository<Contato, Long> {
 }
