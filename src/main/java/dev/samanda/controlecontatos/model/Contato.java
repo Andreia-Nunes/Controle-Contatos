@@ -17,7 +17,7 @@ public class Contato {
     private Integer tipoContato;
     private String contato;
 
-    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
+    @ManyToOne(fetch = FetchType.EAGER, cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     @JoinColumn(name = "id_pessoa", nullable = false)
     private Pessoa pessoa;
 }
