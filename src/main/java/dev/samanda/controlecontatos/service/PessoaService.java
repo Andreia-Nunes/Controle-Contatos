@@ -3,7 +3,6 @@ package dev.samanda.controlecontatos.service;
 import dev.samanda.controlecontatos.model.Pessoa;
 import dev.samanda.controlecontatos.model.dtos.PessoaMalaDireta;
 import dev.samanda.controlecontatos.repository.PessoaRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -12,8 +11,11 @@ import java.util.NoSuchElementException;
 @Service
 public class PessoaService {
 
-    @Autowired
-    private PessoaRepository repository;
+    private final PessoaRepository repository;
+
+    public PessoaService(PessoaRepository repository) {
+        this.repository = repository;
+    }
 
     public Pessoa findById(Long id){
         return repository.findById(id).orElseThrow(() -> new NoSuchElementException());
