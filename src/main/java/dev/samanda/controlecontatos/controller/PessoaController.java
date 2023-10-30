@@ -4,6 +4,7 @@ import dev.samanda.controlecontatos.model.Pessoa;
 import dev.samanda.controlecontatos.model.dtos.PessoaMalaDireta;
 import dev.samanda.controlecontatos.service.PessoaService;
 import io.swagger.v3.oas.annotations.Operation;
+import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -44,14 +45,14 @@ public class PessoaController {
     @Operation(summary = "Criar Pessoa")
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public ResponseEntity<Pessoa> create(@RequestBody Pessoa pessoa){
+    public ResponseEntity<Pessoa> create(@RequestBody @Valid Pessoa pessoa){
         return ResponseEntity.status(201).body(service.create(pessoa));
     }
 
     @Operation(summary = "Atualizar Pessoa por ID")
     @PutMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
-    public ResponseEntity<Pessoa> update(@RequestBody Pessoa pessoa, @PathVariable Long id){
+    public ResponseEntity<Pessoa> update(@RequestBody @Valid Pessoa pessoa, @PathVariable Long id){
         return ResponseEntity.status(200).body(service.update(pessoa, id));
     }
 

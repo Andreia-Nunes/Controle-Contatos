@@ -1,6 +1,6 @@
 package dev.samanda.controlecontatos.model.dtos;
 
-public record ContatoDto(
+public record ContatoCriacaoDto(
         Integer tipoContato,
         String contato,
         Long idPessoa

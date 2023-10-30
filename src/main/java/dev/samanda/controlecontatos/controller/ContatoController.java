@@ -1,9 +1,11 @@
 package dev.samanda.controlecontatos.controller;
 
 import dev.samanda.controlecontatos.model.Contato;
+import dev.samanda.controlecontatos.model.dtos.ContatoAtualizacaoDto;
 import dev.samanda.controlecontatos.model.dtos.ContatoCriacaoDto;
 import dev.samanda.controlecontatos.service.ContatoService;
 import io.swagger.v3.oas.annotations.Operation;
+import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -37,14 +39,14 @@ public class ContatoController {
     @Operation(summary = "Adicionar um novo Contato a uma Pessoa")
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public ResponseEntity<Contato> create(@RequestBody ContatoCriacaoDto contato){
+    public ResponseEntity<Contato> create(@RequestBody @Valid ContatoCriacaoDto contato){
         return ResponseEntity.status(201).body(service.create(contato));
     }
 
     @Operation(summary = "Atualizar Contato por ID")
     @PutMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
-    public ResponseEntity<Contato> update(@RequestBody Contato contato, @PathVariable Long id){
+    public ResponseEntity<Contato> update(@RequestBody ContatoAtualizacaoDto contato, @PathVariable Long id){
         return ResponseEntity.status(200).body(service.update(contato, id));
     }
 
